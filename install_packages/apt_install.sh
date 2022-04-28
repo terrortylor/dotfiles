@@ -1,21 +1,9 @@
 #! /bin/bash
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+pushd ${SCRIPT_DIR} > /dev/null || exit
+
 source ../scripts/common.sh
-
-packages=""
-
-add_package() {
-  # packages="${packages} ${1}"
-  OUTPUT="$(mktemp)"
-  sudo apt-get --assume-yes install "${1}" &> $OUTPUT
-  if [ $? -ne 0 ]; then
-    fail "Installing: ${1}"
-    cat $OUTPUT
-    exit 1
-  fi
-  success "Installing: ${1}"
-  rm $OUTPUT
-}
 
 info "Arming SUDO"
 sudo su -c ""
@@ -28,3 +16,4 @@ add_package google-chrome-stable
 add_package ripgrep
 add_package azure-cli
 
+popd > /dev/null || exit

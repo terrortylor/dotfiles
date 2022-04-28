@@ -19,3 +19,7 @@ link_file "${SCRIPT_DIR}/bin" ~/.bin
 info "Cloning NVIM Config"
 clone git@github.com:terrortylor/vim-environment.git ~/personal-workspace/vim-environment
 link_file ~/personal-workspace/vim-environment ~/.config/nvim
+
+info "Install some stuff"
+./install_packages/apt_install.sh
+./install_packages/work_install.sh

@@ -69,3 +69,34 @@ create_dir() {
     return 1
   fi
 }
+
+add_package() {
+  OUTPUT="$(mktemp)"
+  sudo apt-get --assume-yes install "${1}" &> $OUTPUT
+  if [ $? -ne 0 ]; then
+    fail "Installing: ${1}"
+    cat $OUTPUT
+    exit 1
+  fi
+  success "Installing: ${1}"
+  rm $OUTPUT
+}
+
+run_script() {
+  OUTPUT="$(mktemp)"
+  sh -c "${1}" &> $OUTPUT
+  if [ $? -ne 0 ]; then
+    fail "Running: ${1}"
+    cat $OUTPUT
+    exit 1
+  fi
+  success "Running: ${1}"
+  rm $OUTPUT
+}
+
+binary_exists() {
+  if command -v "${1}" &> /dev/null; then
+      info "${1}: command found, skipping"
+      return 1
+  fi
+}

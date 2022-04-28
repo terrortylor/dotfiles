@@ -1,0 +1,80 @@
+[user]
+	name = alex.tylor
+	email = alex.tylor@e2x.co.uk
+
+[push]
+	default = current
+
+[alias]
+  poc = !git add -A && git commit -m
+  co = checkout
+  cob = checkout -b
+  ci = commit
+  st = status
+  cp = cherry-pick
+  br = branch
+  hist = !sh -c 'git log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short -${1:-20} ${2:-HEAD}' -
+  type = cat-file -t
+  dump = cat-file -p
+  last = !sh -c 'git log -${1:-1} ${2:-HEAD}' -
+  amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+  changed = !sh -c 'git show --name-only ${0:-HEAD}'
+
+  # one-line log
+  l = log --pretty=format:"%C(yellow)%h\\ %Creset%s%Cblue\\ [%ad%Cred%d\\ %cn]" --decorate --date=short --graph --all
+  # no colour
+  ncl = log --pretty=format:"%h\\ %s\\ [%ad\\ %cn]" --decorate --date=short --graph --all
+
+  cm = commit -m
+  fuck = commit --no-verify -m
+  cane = commit --amend --no-edit
+  cae = commit --amend
+
+  # changes
+  # log --pretty=oneline --no-merges --since 2017/01/01 --until 2017/12/31 | cut -d " " -f 2 | cut -d "(" -f 1 | cut -d ":" -f 1 | sort -r | uniq -c | sort -nr -k1
+  # $(date +'%Y/%m/%d')
+
+  d = diff
+  ds = diff --stat
+  dc = diff --cached
+
+  s = status -s
+  cob = checkout -b
+
+  # list branches sorted by last modified
+  b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+
+  # list aliases
+  la = "!git config -l | grep alias | cut -c 7-"
+
+# Pull changes, stash and apply local changes
+  up = pull --rebase --autostash
+
+  track = "!git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`"
+
+[core]
+	editor = nvim
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+
+[merge]
+  tool = vimdiff
+
+[mergetool]
+  keepBackup = false
+
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[url "https://github.com/"]
+	insteadOf = git://github.com/

@@ -1,0 +1,62 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# User specific aliases and functions
+
+# This is used for benchmarking
+for i in ~/.bashrc.d/*.sh; do
+	if [[ $__bashrc_bench ]]; then
+		TIMEFORMAT="$i: %R"
+		time . "$i"
+		unset TIMEFORMAT
+	fi
+done; unset i
+
+if [[ -d $HOME/.bashrc.d ]]
+then
+	for x in $HOME/.bashrc.d/*.sh
+	do
+		if [[ -r "$x" ]]
+		then
+			source $x
+		fi
+	done
+fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+if [[ $ENABLE_RVM ]]; then
+  export PATH="$PATH:$HOME/.rvm/bin"
+  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+fi
+
+# Completion comes at a cost!
+if [[ $COMPLETE_ON ]]; then
+  [[ -s "$HOME/lib/azure-cli/az.completion" ]] && source "$HOME/lib/azure-cli/az.completion"
+  eval "$(gh completion -s bash)"
+fi
+
+# NVM is used so infrequenj
+if [[ $ENABLE_NVM ]]; then
+  startNVM
+fi
+
+if [[ $COMPLETE_ON ]]; then
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/alextylor/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+eval "$(direnv hook bash)"

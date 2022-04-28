@@ -1,0 +1,40 @@
+NOTE_PATH="${HOME}/personnal-workspace/notes"
+
+# if no args then no name set
+# if 1 args then set name
+if [ "$#" -eq 1 ]; then
+  label="-${1}"
+fi
+
+# if two args then set subdir, and name
+if [ "$#" -eq 2 ]; then
+  dir=${1}
+  label="-${2}"
+fi
+# get date
+date=$(date +"%Y-%m-%d-%I-%M-%S")
+name="${date}${label}.md"
+
+if [ ! -z ${dir} ]; then
+  if [ ! -d ${dir} ]; then
+    echo "ERROR: Directory doesn't exists: ${dir}"
+    return 1
+  fi
+fi
+
+if [  -f ${name} ]; then
+  echo "ERROR: Note exists with name: ${name}"
+  return 1
+fi
+
+#echo "dir: ${dir}"
+#echo "name: ${name}"
+if [ -z ${dir} ]; then
+  filepath=${name}
+else
+  filepath="${dir}/${name}"
+fi
+touch $filepath
+
+echo $filepath
+

@@ -1,0 +1,2 @@
+# any _path.sh file is symlinked from another role
+*_path.sh

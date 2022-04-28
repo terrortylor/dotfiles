@@ -1,0 +1,56 @@
+#!/bin/bash
+
+if [  -z $TMUX ]; then
+  echo "tmux not running"
+  exit 1
+fi
+
+SMUG=~/.config/smug
+# FZF_OPTIONS="--layout=reverse"
+FZF_OPTIONS=""
+
+session=""
+window=""
+declare -a items
+
+function setSessionAndWindowFromFZF() {
+  context=$(printf "%s\n" "${items[@]}" | fzf ${FZF_OPTIONS})
+  if [[ -z ${context} ]]; then
+    # no selection, so exit
+    exit 0
+    else
+    session=$(echo ${context} | cut -d ' ' -f 1)
+    window=$(echo ${context} | cut -d ' ' -f 2)
+  fi
+}
+
+function moveToSessionWindow() {
+  if tmux ls | grep -q ${session}; then
+    echo "sessions found"
+    # check if window exists
+    if tmux list-windows -t ${session} | cut -d ' ' -f 2 | grep -q ${window}; then
+      # exists 
+      wid=$(tmux list-windows -t ${session} | grep ": ${window}" | cut -d ':' -f 1)
+      tmux switch -t ${session} \; select-window -t ${wid}
+      exit 0
+    fi
+  fi
+}
+
+function addItemsFromSmugFile() {
+  newItems=$(awk -f ${SMUG}/awk-get-windows ${1})
+  items=("${items[@]}" "${newItems[@]}")
+}
+
+function addAllSmugConfigFiles() {
+  for f in ${SMUG}/*.yml; do
+    addItemsFromSmugFile $f
+  done
+}
+
+addAllSmugConfigFiles
+setSessionAndWindowFromFZF
+moveToSessionWindow
+#selected smug session isn't running to start
+smug start "${session}:${window}"
+moveToSessionWindow

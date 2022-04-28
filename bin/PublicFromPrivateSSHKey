@@ -1,0 +1,14 @@
+#! /bin/bash -e
+
+if [ "$#" -ne 1 ]; then
+  echo "No private key path set, setting to 'id_rsa'"
+  private="id_rsa"
+else
+  private=${1}
+fi
+
+echo "Setting correct perms on private key..."
+chmod 0600 ${private}
+
+echo "Generating public key..."
+ssh-keygen -y -f ${private} > ./${!}_pub

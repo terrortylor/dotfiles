@@ -1,0 +1,21 @@
+#! /bin/bash -e
+
+echo "Adding all users to all vaults..."
+
+users=$(knife user list | tr '\n' ',')
+
+if [ -z "${users}" ]; then
+  echo "Users list empty, exiting..."
+  exit 1
+else
+  users=${users::-1}
+fi
+
+echo "Found users: ${users}"
+for db in $(knife data bag list); do
+  echo "Data bag: $db"
+  for v in $(knife vault show $db); do
+    echo "Vault: $v"
+    knife vault update $db $v --admins "${users}"
+  done
+done

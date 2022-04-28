@@ -1,0 +1,14 @@
+#!/bin/bash
+
+opt=$(printf "alex\ne2x" | fzf)
+if [ -n ${opt} ]; then
+  if [ "${opt}" == "alex" ]; then
+    ssh-add -d /home/alextylor/.ssh/id_rsa_alex.tylor 2>/dev/null
+    ssh-add /home/alextylor/.ssh/id_rsa
+    git config --global user.email "atylor@gmail.com"
+  else
+    ssh-add -d /home/alextylor/.ssh/id_rsa 2>/dev/null
+    ssh-add /home/alextylor/.ssh/id_rsa_alex.tylor
+    git config --global user.email "alex.tylor@e2x.co.uk"
+  fi
+fi

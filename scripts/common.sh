@@ -79,9 +79,12 @@ add_package() {
   OUTPUT="$(mktemp)"
   dpkg -s "${1}" &> $OUTPUT
   if [ $? -ne 0 ]; then
-    fail "Installing: ${1}"
-    cat $OUTPUT
-    exit 1
+    if  ! grep -q "is not installed and no information is available" $OUTPUT; then
+      fail "Installing: ${1}"
+      cat $OUTPUT
+      rm $OUTPUT
+      exit 1
+    fi
   fi
   if  grep -q "Status: install ok installed" $OUTPUT; then
     rm $OUTPUT
@@ -92,6 +95,7 @@ add_package() {
   if [ $? -ne 0 ]; then
     fail "Installing: ${1}"
     cat $OUTPUT
+    rm $OUTPUT
     exit 1
   fi
   success "Installing: ${1}"

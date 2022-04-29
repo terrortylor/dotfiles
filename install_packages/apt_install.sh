@@ -11,6 +11,7 @@ sudo su -c ""
 info "General workflow packages"
 add_package fzf
 add_package tmux
+add_package xclip
 add_package slack
 add_package google-chrome-stable
 add_package ripgrep

@@ -10,9 +10,8 @@ info "Setting up tmux"
 
 create_dir ~/.tmux/plugins
 
-info "\tCloning plugins"
+info "\tCloning tmux plugin manager"
 clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-clone https://github.com/laktak/extrakto ~/.tmux/plugins/extrakto
 
 link_file "${SCRIPT_DIR}/tmux.conf" ~/.tmux.conf
 

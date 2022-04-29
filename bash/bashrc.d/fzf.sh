@@ -44,7 +44,7 @@ fcd() {
 # more focused
 ffcd() {
 	items=$(find ~/workspace -type d -path '*/node_modules' -prune -o -type d -print)
-	items+=$(find ~/personnal-workspace -maxdepth 5 -type d -path '*/node_modules' -prune -o -type d -print)
+	items+=$(find ~/personal-workspace -maxdepth 5 -type d -path '*/node_modules' -prune -o -type d -print)
 	cd=$(echo "$items" | fzf)
 	if [[ -n ${cd} ]]; then
 		cd "${cd}" || exit

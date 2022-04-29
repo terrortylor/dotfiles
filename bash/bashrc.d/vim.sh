@@ -3,7 +3,7 @@ alias vim=nvim
 alias vi=nvim
 
 function vimmm() {
-  cd ~/personnal-workspace/vim-environment
+  cd ~/personal-workspace/vim-environment
   ls
 
   vim lua/config/plugins.lua

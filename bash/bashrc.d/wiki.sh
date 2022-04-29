@@ -1,4 +1,4 @@
-_NOTES_DIR=~/personnal-workspace/notes
+_NOTES_DIR=~/personal-workspace/notes
 
 gonotes() {
   cd ${_NOTES_DIR}

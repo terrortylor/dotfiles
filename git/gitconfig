@@ -76,5 +76,9 @@
 
 [mergetool "vimdiff"]
   cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
 [url "https://github.com/"]
 	insteadOf = git://github.com/
+
+[includeIf "gitdir:~/workspace/"]
+    path = ~/.gitconfig_work

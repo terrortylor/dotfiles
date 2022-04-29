@@ -4,6 +4,10 @@ info() {
 	printf "\r [ \033[00;34mINFO\033[0m ] $1\n"
 }
 
+skip() {
+	printf "\r [ \033[00;33mSKIP\033[0m ] $1\n"
+}
+
 success() {
 	printf "\r [ \033[00;32m OK \033[0m ] $1\n"
 }
@@ -20,7 +24,7 @@ fail() {
 clone() {
 	info "\tCloning $1"
 	if [ -d "$2" ]; then
-		success "\tSkipping clone, path found: $2"
+		skip "\tSkipping clone, path found: $2"
 		return 0
 	fi
 	if git clone "$1" "$2"; then
@@ -35,7 +39,7 @@ clone() {
 # 1 - source	
 # 2 - destination	
 link_file() {
-	info "\tCreating symlink:"
+	info "\tCreating symlink: ${2}"
 	if [ ! -f "$1" -a ! -d "$1" ]; then
 		fail "\tSource file does not exist: $1"
 		return 1
@@ -44,7 +48,7 @@ link_file() {
 		if [ -e ${my_link} ] ; then
 			local src="$(readlink -fv $2)"
 			if [ "$src" == "$1" ]; then
-				success "\tLink exists"
+				skip "\tLink exists"
 			else
 				fail "\tLink exists to wrong path: $1"
 			fi
@@ -57,6 +61,7 @@ link_file() {
 		fi
 	else
 		ln -s "$1" "$2"
+    success
 	fi
 }
 
@@ -72,6 +77,17 @@ create_dir() {
 
 add_package() {
   OUTPUT="$(mktemp)"
+  dpkg -s "${1}" &> $OUTPUT
+  if [ $? -ne 0 ]; then
+    fail "Installing: ${1}"
+    cat $OUTPUT
+    exit 1
+  fi
+  if  grep -q "Status: install ok installed" $OUTPUT; then
+    rm $OUTPUT
+    skip "Installed: ${1}"
+    return 0
+  fi
   sudo apt-get --assume-yes install "${1}" &> $OUTPUT
   if [ $? -ne 0 ]; then
     fail "Installing: ${1}"

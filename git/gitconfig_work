@@ -1,3 +1,5 @@
 [user]
 	name = alex.tylor
 	email = alex.tylor@e2x.com
+[core]
+  sshCommand = "ssh -i ~/.ssh/id_rsa_alex.tylor -F /dev/null"

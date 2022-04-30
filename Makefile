@@ -1,0 +1,5 @@
+update_bats:
+	git submodule update --init --recursive
+
+tests:
+	./bats/bats/bin/bats test/**/*.bats

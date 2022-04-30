@@ -12,7 +12,8 @@ success() {
 	printf "\r [ \033[00;32m OK \033[0m ] $1\n"
 }
 
-fail() {
+# I'd like this to be "fail" but that breaks bats...?
+error() {
 	printf "\r [ \033[00;31mFAIL\033[0m ] $1\n"
 	echo ''
 	#exit
@@ -30,37 +31,33 @@ clone() {
 	if git clone "$1" "$2"; then
 		success
 	else
-		fail
+		error
 	fi
 }
 
 # TODO be nice to have this func print out what it's symlinking
 # Args:
-# 1 - source	
-# 2 - destination	
+# 1 - file	
+# 2 - target	
 link_file() {
 	info "\tCreating symlink: ${2}"
 	if [ ! -f "$1" -a ! -d "$1" ]; then
-		fail "\tSource file does not exist: $1"
+		error "\tTarget does not exist: $1"
 		return 1
 	fi
 	if [ -L "$2" ]; then
-		if [ -e ${my_link} ] ; then
-			local src="$(readlink -fv $2)"
-			if [ "$src" == "$1" ]; then
-				skip "\tLink exists"
-			else
-				fail "\tLink exists to wrong path: $1"
-			fi
-		else
-			fail "\tBroken link: $1"
-		fi
-	elif [ -e ${2} ] ; then
-		if [ -f "$2" -o -d "$2" ]; then
-			fail "\tDestination exists as file or directory: $2"
-		fi
-	else
-		ln -s "$1" "$2"
+    local src="$(readlink -fv $2)"
+    if [ "$src" == "$1" ]; then
+      skip "\tLink exists"
+    else
+      error "\tLink exists to wrong target, wanted: $1 - $2"
+      return 1
+    fi
+  elif [ -f "$2" -o -d "$2" ]; then
+    error "\tLink already exists as file or directory: $2"
+    return 1
+  else
+    ln -s "$1" "$2"
     success
 	fi
 }
@@ -70,7 +67,7 @@ create_dir() {
   if mkdir -p "$1"; then
     success "\tCreating directory: $1"
   else
-    fail "\tCreating directory: $1"
+    error "\tCreating directory: $1"
     return 1
   fi
 }
@@ -80,7 +77,7 @@ add_package() {
   dpkg -s "${1}" &> $OUTPUT
   if [ $? -ne 0 ]; then
     if  ! grep -q "is not installed and no information is available" $OUTPUT; then
-      fail "Installing: ${1}"
+      error "Installing: ${1}"
       cat $OUTPUT
       rm $OUTPUT
       exit 1
@@ -93,7 +90,7 @@ add_package() {
   fi
   sudo apt-get --assume-yes install "${1}" &> $OUTPUT
   if [ $? -ne 0 ]; then
-    fail "Installing: ${1}"
+    error "Installing: ${1}"
     cat $OUTPUT
     rm $OUTPUT
     exit 1
@@ -106,17 +103,10 @@ run_script() {
   OUTPUT="$(mktemp)"
   sh -c "${1}" &> $OUTPUT
   if [ $? -ne 0 ]; then
-    fail "Running: ${1}"
+    error "Running: ${1}"
     cat $OUTPUT
     exit 1
   fi
   success "Running: ${1}"
   rm $OUTPUT
-}
-
-binary_exists() {
-  if command -v "${1}" &> /dev/null; then
-      info "${1}: command found, skipping"
-      return 1
-  fi
 }

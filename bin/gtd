@@ -1,4 +1,5 @@
 NOTE_PATH="${HOME}/personal-workspace/notes/gtd"
 
 cd $NOTE_PATH
-/home/alextylor/bin/nvim -c "set noswapfile" inbox.norg -c "Neorg gtd views"
+/* /home/alextylor/bin/nvim -c "set noswapfile" inbox.norg -c "Neorg gtd views" */
+nvim -c "set noswapfile" inbox.norg -c "Neorg gtd views"

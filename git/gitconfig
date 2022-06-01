@@ -82,3 +82,9 @@
 
 [includeIf "gitdir:~/workspace/"]
     path = ~/.gitconfig_work
+
+[includeIf "gitdir:~/go/pkg/"]
+    path = ~/.gitconfig_work
+
+[url "git@github.com:e2x/"]
+	insteadOf = https://github.com/e2x/

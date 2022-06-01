@@ -1,10 +1,12 @@
 # Open file(s) with fzf in vim
+BAT_BIN="batcat"
+
 fvim() {
 	local files
 
 	# TODO this is repeated, tidy up
-	if type bat >/dev/null; then
-		files="$(fzf --preview 'bat --style=numbers --color=always --line-range :500 {}')"
+	if type ${BAT_BIN} >/dev/null; then
+		files="$(fzf --preview "${BAT_BIN} --style=numbers --color=always --line-range :500 {}")"
 	else
 		files="$(fzf --preview 'cat {}')"
 	fi
@@ -18,8 +20,8 @@ fvim() {
 f_insert_file_name() {
 	local file
 
-	if type bat >/dev/null; then
-		file="$(fzf --preview 'bat --style=numbers --color=always --line-range :500 {}')"
+	if type ${BAT_BIN} >/dev/null; then
+		file="$(fzf --preview "${BAT_BIN} --style=numbers --color=always --line-range :500 {}")"
 	else
 		file="$(fzf --preview 'cat {}')"
 	fi
@@ -66,24 +68,47 @@ f_insert_directory_name() {
 fcat() {
 	local file
 
-	if type bat >/dev/null; then
-		file="$(fzf --preview 'bat --style=numbers --color=always --line-range :500 {}')"
+	if type ${BAT_BIN} >/dev/null; then
+		file="$(fzf --preview "${BAT_BIN} --style=numbers --color=always --line-range :500 {}")"
 	else
 		file="$(fzf --preview 'cat {}')"
 	fi
 
 	if [[ -n $file ]]; then
-		if type bat >/dev/null; then
-			bat $file
+		if type ${BAT_BIN} >/dev/null; then
+			${BAT_BIN} $file
 		else
 			cat $file
 		fi
 	fi
 }
 
+fcopytoclipboard() {
+	local file
+
+	path=${1}
+  if [[ -n ${path} ]]; then
+    pushd ${path} > /dev/null
+  fi
+
+	if type ${BAT_BIN} >/dev/null; then
+		file="$(fzf --preview "${BAT_BIN} --style=numbers --color=always --line-range :500 {}")"
+	else
+		file="$(fzf --preview 'cat {}')"
+	fi
+
+  if [[ -n ${path} ]]; then
+    popd > /dev/null
+  fi
+
+	if [[ -n $file ]]; then
+    cat ${path}${file} | xclip -selection clipboard
+	fi
+}
+
 rgfzfpreview() {
 	$1 >>/tmp/preview
-	bat --style=numbers --color=always --line-range :500 $1
+	${BAT_BIN} --style=numbers --color=always --line-range :500 $1
 }
 
 # Wrapper for ripgrep and fzf, using bat as preview

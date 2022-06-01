@@ -1,6 +1,6 @@
 #! /bin/bash -e
 #
-# Helper script to be falled from rgfzf() function
+# Helper script to be called from rgfzf() function
 # To format the rg line and then send to bat for preview
 # This is ripped from: https://github.com/junegunn/fzf.vim/blob/master/bin/preview.sh
 
@@ -8,4 +8,4 @@ IFS=':' read -r -a INPUT <<< "$1"
 FILE=${INPUT[0]}
 CENTER=${INPUT[1]}
 
-bat --style=numbers --color=always --pager=never --highlight-line=${CENTER} ${FILE}
+batcat --style=numbers --color=always --pager=never --highlight-line=${CENTER} --line-range ${CENTER}: ${FILE}

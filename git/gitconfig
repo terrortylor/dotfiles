@@ -9,7 +9,6 @@
   poc = !git add -A && git commit -m
   co = checkout
   cob = checkout -b
-  ci = commit
   st = status
   cp = cherry-pick
   br = branch

@@ -18,5 +18,7 @@ add_package slack
 add_package google-chrome-stable
 add_package ripgrep
 add_package azure-cli
+# CIDR calculator
+add_package sipcalc
 
 popd > /dev/null || exit

@@ -87,6 +87,14 @@ fcopytoclipboard() {
 	local file
 
 	path=${1}
+
+  # if file then add to clipbaord
+  if [[ -f ${path} ]]; then
+    cat ${path} | xclip -selection clipboard
+    return
+  fi
+
+  # if dir then fzf file
   if [[ -n ${path} ]]; then
     pushd ${path} > /dev/null
   fi

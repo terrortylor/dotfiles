@@ -20,6 +20,8 @@ add_package google-chrome-stable
 add_package ripgrep
 add_package azure-cli
 add_package lastpass-cli
+# shell/bash lsp server
+add_package shellcheck
 # CIDR calculator
 add_package sipcalc
 

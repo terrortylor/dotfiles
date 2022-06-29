@@ -1,9 +1,9 @@
 #! /bin/bash
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-pushd ${SCRIPT_DIR} > /dev/null || exit
+pushd "${SCRIPT_DIR}" > /dev/null || exit
 
-
+# shellcheck source=./scripts/common.sh
 source ../scripts/common.sh
 
 info "Setting up tmux"

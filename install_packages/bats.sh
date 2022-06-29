@@ -5,7 +5,7 @@ if command -v bats &> /dev/null; then
     exit
 fi
 
-cd /tmp
+cd /tmp || exit
 git clone https://github.com/bats-core/bats-core.git
-cd bats-core
+cd bats-core || exit
 sudo ./install.sh /usr/local

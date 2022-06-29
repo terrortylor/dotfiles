@@ -3,3 +3,6 @@ update_bats:
 
 tests:
 	./bats/bats/bin/bats test/**/*.bats
+
+lint:
+	shellcheck **/*.sh

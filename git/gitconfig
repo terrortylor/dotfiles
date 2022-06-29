@@ -20,7 +20,7 @@
   changed = !sh -c 'git show --name-only ${0:-HEAD}'
 
   # one-line log
-  l = log --pretty=format:"%C(yellow)%h\\ %Creset%s%Cblue\\ [%ad%Cred%d\\ %cn]" --decorate --date=short --graph --all
+  l = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
   # no colour
   ncl = log --pretty=format:"%h\\ %s\\ [%ad\\ %cn]" --decorate --date=short --graph --all
 

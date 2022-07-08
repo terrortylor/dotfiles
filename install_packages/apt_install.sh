@@ -25,5 +25,7 @@ add_package lastpass-cli
 add_package shellcheck
 # CIDR calculator
 add_package sipcalc
+# yamllint schema files
+add_package yamllint
 
 popd > /dev/null || exit

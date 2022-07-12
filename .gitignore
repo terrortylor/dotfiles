@@ -1,2 +1,3 @@
 bash/bashrc.d/luarocks.sh
 bash/bashrc.d/luacheck.sh
+bin/nvim-old

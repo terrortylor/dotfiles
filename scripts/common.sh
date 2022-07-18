@@ -1,20 +1,21 @@
 #! /bin/bash
 
 info() {
-	printf "\r [ \033[00;34mINFO\033[0m ] $1\n"
+	# printf "\r [ \033[00;34mINFO\033[0m ] $1\n"
+	echo -e " [ \033[00;34mINFO\033[0m ] $1"
 }
 
 skip() {
-	printf "\r [ \033[00;33mSKIP\033[0m ] $1\n"
+	echo -e " [ \033[00;33mSKIP\033[0m ] $1"
 }
 
 success() {
-	printf "\r [ \033[00;32m OK \033[0m ] $1\n"
+	echo -e " [ \033[00;32m OK \033[0m ] $1"
 }
 
 # I'd like this to be "fail" but that breaks bats...?
 error() {
-	printf "\r [ \033[00;31mFAIL\033[0m ] $1\n"
+	echo -e " [ \033[00;31mFAIL\033[0m ] $1"
 	echo ''
 	#exit
 }

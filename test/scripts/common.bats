@@ -16,28 +16,28 @@ teardown() {
   source scripts/common.sh
   run info "An info message"
   assert_success
-  assert_output -p '] An info message'
+  assert_output -e "^\s[[]\s.*INFO.*\s[]]\sAn info message$"
 }
 
 @test "success - prints" {
   source scripts/common.sh
   run success "A success message"
   assert_success
-  assert_output -p '] A success message'
+  assert_output -e "^\s[[]\s.*OK.*\s[]]\sA success message$"
 }
 
 @test "skip - prints" {
   source scripts/common.sh
-  run skip "An skip message"
+  run skip "A skip message"
   assert_success
-  assert_output -p '] An skip message'
+  assert_output -e "^\s[[]\s.*SKIP.*\s[]]\sA skip message$"
 }
 
 @test "error - prints" {
   source scripts/common.sh
   run error "A fail message"
   assert_success
-  assert_output -p '] A fail message'
+  assert_output -e "^\s[[]\s.*FAIL.*\s[]]\sA fail message$"
 }
 
 @test "clone - dont't clone repository if destination exists" {

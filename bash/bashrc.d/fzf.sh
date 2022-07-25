@@ -36,8 +36,7 @@ f_insert_file_name() {
 # I am too lazy to cd **<TAB>
 fcd() {
 	local dir
-	dir=$(find "${1:-.}" -path '*/\.*' -prune \
-		-o -type d -print 2>/dev/null | fzf +m) &&
+	dir=$(fdfind -t d -0 . | fzf +m) &&
 		cd "$dir" || exit
 
 	tmux_set_window_name
@@ -45,9 +44,7 @@ fcd() {
 
 # more focused
 ffcd() {
-	items=$(find ~/workspace -type d -path '*/node_modules' -prune -o -type d -print)
-	items+=$(find ~/personal-workspace -maxdepth 5 -type d -path '*/node_modules' -prune -o -type d -print)
-	cd=$(echo "$items" | fzf)
+	cd=$(fdfind -t d --search-path ~/workspace --search-path ~/personal-workspace -d 5 -0 | fzf --read0)
 	if [[ -n ${cd} ]]; then
 		cd "${cd}" || exit
 

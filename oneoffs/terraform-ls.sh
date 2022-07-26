@@ -2,7 +2,7 @@
 
 set -e
 
-pushd /tmp > /dev/null
+pushd /tmp > /dev/null || exit
 IS_UPTO_DATE=false
 VERSION=$(curl -sL https://api.github.com/repos/hashicorp/terraform-ls/releases/latest | jq -r ".tag_name")
 TRIMMED_VERSION="${VERSION##v}" # strip v from front of version
@@ -25,4 +25,4 @@ if ! ${IS_UPTO_DATE}; then
 
   sudo mv terraform-ls /usr/local/bin/.
 fi
-popd > /dev/null
+popd > /dev/null || exit

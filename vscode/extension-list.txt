@@ -1,0 +1,3 @@
+asvetliakov.vscode-neovim
+hashicorp.terraform
+ms-vsliveshare.vsliveshare

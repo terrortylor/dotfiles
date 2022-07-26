@@ -12,6 +12,7 @@ create_dir ~/personal-workspace
 sh -c bash/setup.sh
 sh -c tmux/setup.sh
 sh -c git/setup.sh
+sh -c vscode/setup.sh
 
 info "Linking bin directory"
 link_file "${SCRIPT_DIR}/bin" ~/.bin

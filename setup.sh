@@ -25,3 +25,4 @@ info "Install some stuff"
 ./install_packages/apt_install.sh
 ./install_packages/work_install.sh
 ./install_packages/go_packages.sh
+./install_packages/pip_packages.sh

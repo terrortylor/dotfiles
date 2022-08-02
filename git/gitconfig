@@ -9,6 +9,7 @@
   poc = !git add -A && git commit -m
   co = checkout
   cob = checkout -b
+  cobnew = !sh -c 'git co main && git up && git cob ${1}' -
   st = status
   cp = cherry-pick
   br = branch

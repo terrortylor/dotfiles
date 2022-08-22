@@ -10,6 +10,7 @@
   co = checkout
   cob = checkout -b
   cobnew = !sh -c 'git co main && git up && git cob ${1}' -
+  s = status
   st = status
   cp = cherry-pick
   br = branch
@@ -37,9 +38,6 @@
   d = diff
   ds = diff --stat
   dc = diff --cached
-
-  s = status -s
-  cob = checkout -b
 
   # list branches sorted by last modified
   b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"

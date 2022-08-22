@@ -1,3 +1,5 @@
+alias lg=lazygit
+
 alias EditBashrcdFiles="vim -c 'EditBashrcdFiles'"
 
 # Create directory and move into it

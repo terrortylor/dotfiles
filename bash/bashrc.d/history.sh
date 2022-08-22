@@ -8,4 +8,4 @@ HISTTIMEFORMAT='%F %T '
 # export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$"\n"}history -a; history -c; history -r"
 # Do not store a duplicate of the last entered command
 HISTCONTROL=ignoredups
-HISTIGNORE="ls:ll:ls -al:pwd"
+HISTIGNORE="ls:ll:ls -al:pwd: git status;git s;git st"

@@ -27,5 +27,6 @@ add_package shellcheck
 add_package sipcalc
 # yamllint schema files
 add_package yamllint
+add_package traceroute
 
 popd > /dev/null || exit

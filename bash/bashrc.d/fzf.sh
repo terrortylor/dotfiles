@@ -36,7 +36,7 @@ f_insert_file_name() {
 # I am too lazy to cd **<TAB>
 fcd() {
 	local dir
-	dir=$(fdfind -t d -0 . | fzf +m) &&
+	dir=$(fdfind -t d | fzf +m) &&
 		cd "$dir" || exit
 
 	tmux_set_window_name

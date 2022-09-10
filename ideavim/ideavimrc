@@ -1,1 +1,4 @@
+set incsearch
 inoremap jj <ESC>
+set easymotion
+nmap s <Plug>(easymotion-jumptoanywhere)

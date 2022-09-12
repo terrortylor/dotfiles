@@ -1,4 +1,41 @@
+set clipboard+=unnamed
+set clipboard+=ideaput
+let mapleader=" "
+set visualbell
+set noerrorbells
 set incsearch
 inoremap jj <ESC>
 set easymotion
+set relativenumber
+set number
+set hlsearch
+nnoremap <space>t/ :set hlsearch!<cr>
 nmap s <Plug>(easymotion-jumptoanywhere)
+nnoremap <C-H> <C-W>
+nnoremap <C-L> <C-W>l
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nmap <C-W>q :action CloseContent<CR>
+nnoremap fd :action ReformatCode<CR>
+nnoremap <leader>fg :action FindInPath<CR>
+nnoremap <C-p> :action GotoFile<CR>
+nnoremap <leader><space> :action Switcher<cr>
+nnoremap [t :action PreviousTab<CR>
+nnoremap ]t :action NextTab<CR>
+
+nnoremap gd :action GotoImplementation<CR>
+
+" built-in navigation to navigated items works better
+nnoremap <c-o> :action Back<cr>
+nnoremap <c-i> :action Forward<cr>
+" but preserve ideavim defaults
+nnoremap g<c-o> <c-o>
+nnoremap g<c-i> <c-i>
+
+sethandler <C-;> a:vim
+sethandler <C-S-;> a:vim
+sethandler <C-H> a:vim
+sethandler <C-L> a:vim
+sethandler <C-P> a:vim
+sethandler <C-N> a:vim
+sethandler <C-W> a:vim

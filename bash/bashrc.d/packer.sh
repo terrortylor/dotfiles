@@ -1,4 +1,4 @@
-case `uname` in
+case $(uname) in
   Darwin)
     # commands for OS X go here
   ;;

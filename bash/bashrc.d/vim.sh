@@ -9,3 +9,5 @@ function vimmm() {
 
   vim lua/config/plugins.lua
 }
+
+alias vimr='vim -c "RestoreSession"'

@@ -1,5 +1,9 @@
 hint_activation_key: C-M-m
 activation_key: C-M-n
-exit: u
+hint_oneshot_key: C-M-u
+exit: u q
 grid_exit: u
 hint_exit: u
+hint_chars: asdfghjkl;wertyuioxcvbnm,.
+cursor_color: #7EEB44
+hint_fgcolor: #7EEB44

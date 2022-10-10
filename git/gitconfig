@@ -81,6 +81,9 @@
 [includeIf "gitdir:~/workspace/"]
     path = ~/.gitconfig_work
 
+[includeIf "gitdir:~/personal-workspace/"]
+    path = ~/.gitconfig_personal
+
 [includeIf "gitdir:~/go/pkg/"]
     path = ~/.gitconfig_work
 

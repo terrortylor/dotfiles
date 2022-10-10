@@ -11,5 +11,6 @@ info "Setting up git"
 
 link_file "${SCRIPT_DIR}/gitconfig" ~/.gitconfig
 link_file "${SCRIPT_DIR}/gitconfig_work" ~/.gitconfig_work
+link_file "${SCRIPT_DIR}/gitconfig_personal" ~/.gitconfig_personal
 
 popd > /dev/null || exit

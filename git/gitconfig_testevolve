@@ -1,0 +1,5 @@
+[user]
+	name = alex.tylor
+	email = alex.tylor@testevolve.com
+[core]
+  sshCommand = "ssh -i ~/.ssh/id_rsa_ed25519_testevolve -F /dev/null"

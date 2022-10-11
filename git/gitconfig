@@ -84,6 +84,12 @@
 [includeIf "gitdir:~/personal-workspace/"]
     path = ~/.gitconfig_personal
 
+[includeIf "gitdir:~/orc-id-workspace/"]
+    path = ~/.gitconfig_orcid
+
+[includeIf "gitdir:~/testevolve-workspace/"]
+    path = ~/.gitconfig_testevolve
+
 [includeIf "gitdir:~/go/pkg/"]
     path = ~/.gitconfig_work
 

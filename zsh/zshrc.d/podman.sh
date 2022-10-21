@@ -1,0 +1,1 @@
+alias -g docker=podman

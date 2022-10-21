@@ -45,7 +45,7 @@
   # list aliases
   la = "!git config -l | grep alias | cut -c 7-"
 
-# Pull changes, stash and apply local changes
+  # Pull changes, stash and apply local changes
   up = pull --rebase --autostash
 
   track = "!git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`"

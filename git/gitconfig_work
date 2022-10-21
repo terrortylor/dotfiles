@@ -2,4 +2,4 @@
 	name = alex.tylor
 	email = alex.tylor@e2x.com
 [core]
-  sshCommand = "ssh -i ~/.ssh/id_rsa_alex.tylor -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa -F /dev/null"
+	sshCommand = "ssh -i ~/.ssh/id_rsa_alex.tylor -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa -F /dev/null"

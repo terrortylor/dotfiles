@@ -1,4 +1,4 @@
 NOTE_PATH="${HOME}/personal-workspace/notes"
 
 cd $NOTE_PATH
-/home/alextylor/bin/nvim -c "set noswapfile" -c "Telescope find_files"
+/Users/alex.tylor/.my-bin/nvim-macos/bin/nvim -c "set noswapfile" -c "Telescope find_files"

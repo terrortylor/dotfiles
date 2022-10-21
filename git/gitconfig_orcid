@@ -1,5 +1,5 @@
 [user]
-	name = alex.tylor
+	name = Alex Tylor
 	email = alex.tylor@orc-id.com
 [core]
-  sshCommand = "ssh -i ~/.ssh/id_rsa_ed25519_orcid -F /dev/null"
+	sshCommand = "ssh -i ~/.ssh/id_rsa_ed25519 -F /dev/null"

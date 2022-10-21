@@ -10,6 +10,7 @@ info "Arming SUDO"
 sudo su -c ""
 
 info "General workflow packages"
+add_package zsh
 add_package tree
 add_package fzf
 add_package jq

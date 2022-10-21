@@ -48,7 +48,7 @@ link_file() {
 	fi
 	if [ -L "$2" ]; then
 		# shellcheck disable=2086,2155
-		local src="$(readlink -fv ${2})"
+		local src="$(readlink -f ${2})"
 		if [ "$src" == "$1" ]; then
 			skip "\tLink exists"
 		else

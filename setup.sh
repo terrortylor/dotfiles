@@ -25,6 +25,9 @@ link_file "${SCRIPT_DIR}/bin" ~/.my-bin
 info "Linking warpd config"
 link_file "${SCRIPT_DIR}/config/warpd" ~/.config/warpd
 
+info "Linking alacritty config"
+link_file "${SCRIPT_DIR}/config/alacritty" ~/.config/alacritty
+
 info "Cloning NVIM Config"
 clone git@github.com:terrortylor/vim-environment.git ~/personal-workspace/vim-environment
 link_file ~/personal-workspace/vim-environment ~/.config/nvim

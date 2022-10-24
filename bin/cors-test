@@ -1,0 +1,16 @@
+#! /bin/bash -e
+
+echo "Target URL is: ${1}"
+echo "Origin URL is: ${2}"
+echo "Assuming this works, you should see the following headers, and get a 200 response:"
+echo "access-control-allow-origin"
+echo "access-control-allow-methods"
+echo "access-control-allow-headers"
+echo "============================"
+echo ""
+
+curl -k -H "Origin: ${2}" \
+  -H "Access-Control-Request-Method: GET" \
+  -H "Access-Control-Request-Headers: X-Requested-With" \
+  -X OPTIONS --verbose \
+  ${1}?filter=

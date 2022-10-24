@@ -8,12 +8,9 @@ pushd "${SCRIPT_DIR}" > /dev/null || exit
 source ../scripts/common.sh
 
 info "Setting up zshrc"
+link_file "${SCRIPT_DIR}/zshrc" ~/.zshrc
 
-if [[ $OSTYPE == 'darwin'* ]]; then
-  link_file "${SCRIPT_DIR}/zshrc.d" ~/.my-zshrc.d
-else
-  link_file "${SCRIPT_DIR}/zshrc.d" ~/.zshrc.d
-fi
+link_file "${SCRIPT_DIR}/zshrc.d" ~/.zshrc.d
 
 info "Installing plugins"
 git clone https://github.com/lukechilds/zsh-nvm $HOME/.oh-my-zsh/custom/plugins/zsh-nvm

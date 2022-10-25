@@ -2,7 +2,7 @@
 alias -g ll='ls -lahF'
 
 # Options
-setopt SHARE_HISTORY
+# setopt SHARE_HISTORY
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST

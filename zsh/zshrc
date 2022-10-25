@@ -15,7 +15,3 @@ fpath+=${HOME}/.zsh-functions
 for script in ${HOME}/.zshrc.d/*.sh; do
   source ${script}
 done
-
-for script in ${HOME}/.my-zshrc.d/*.sh; do
-  source ${script}
-done

@@ -6,9 +6,9 @@ pushd "${SCRIPT_DIR}" > /dev/null || exit
 # shellcheck source=./scripts/common.sh
 source ../scripts/common.sh
 
-info "Installing work packages"
-find work/. -name "*.sh" | while read -r installer ; do 
-  run_script "${installer}"
+info "Installing other packages"
+find other/. -name "*.sh" | while read -r installer ; do 
+  source "${installer}"
 done
 
 popd > /dev/null || exit

@@ -8,6 +8,7 @@ setopt INC_APPEND_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_REDUCE_BLANKS
+HISTORY_IGNORE="ls|ll|pwd|exit|git s|git st"
 
 # Prompt
 ZSH_THEME_GIT_PROMPT_PREFIX="("

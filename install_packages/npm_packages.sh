@@ -13,6 +13,6 @@ npm_install() {
 info "Installing NPM packages"
 npm_install "cdktf-cli@latest"
 npm_install "typescript-language-server"
-npm__install "typescript"
+npm_install "typescript"
 
 popd > /dev/null || exit

@@ -28,6 +28,9 @@ link_file "${SCRIPT_DIR}/config/warpd" ~/.config/warpd
 info "Linking alacritty config"
 link_file "${SCRIPT_DIR}/config/alacritty" ~/.config/alacritty
 
+info "Linking tridactyl config"
+link_file "${SCRIPT_DIR}/config/tridactyl" ~/.config/tridactyl
+
 info "Cloning NVIM Config"
 clone git@github.com:terrortylor/vim-environment.git ~/personal-workspace/vim-environment
 link_file ~/personal-workspace/vim-environment ~/.config/nvim

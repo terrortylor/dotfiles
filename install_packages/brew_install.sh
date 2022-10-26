@@ -6,15 +6,52 @@ pushd "${SCRIPT_DIR}" > /dev/null || exit
 # shellcheck source=./scripts/common.sh
 source ../scripts/common.sh
 
+function install_brew() {
+  if grep -q ${1} <<< ${installed_brews}; then
+    skip "Skipping ${1}"
+  else
+    info "Installing ${1}"
+    brew install ${1}
+  fi
+}
+
+installed_brews=$(brew list)
+
 info "General workflow packages"
-brew install lazygit
-brew install fd
-brew install tree
-brew install fzf
-brew install bat
-brew install jq
-brew install tmux
-brew install ripgrep
-brew install k9s
+install_brew neovim
+install_brew coreutils
+install_brew binutils
+install_brew diffutils
+install_brew findutils --with-default-names
+install_brew gawk
+install_brew gnu-sed --with-default-names
+install_brew gnu-tar --with-default-names
+install_brew gnu-which --with-default-names
+install_brew gnutls
+install_brew grep --with-default-names
+install_brew gzip
+install_brew watch
+install_brew less
+install_brew make
+install_brew rsync
+install_brew unzip
+install_brew pygments
+install_brew bitwarden-cli
+install_brew podman
+install_brew podman-compose
+install_brew kind
+install_brew jq
+install_brew kubernetes-cli
+install_brew helm
+install_brew tmux
+install_brew k9s
+install_brew iterm2 --cask
+install_brew lazygit
+install_brew fd
+install_brew fzf
+install_brew bat
+install_brew ripgrep
+# postgres cli tooling
+install_brew libpq
 
 popd > /dev/null || exit

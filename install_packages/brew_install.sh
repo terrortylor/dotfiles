@@ -53,5 +53,6 @@ install_brew bat
 install_brew ripgrep
 # postgres cli tooling
 install_brew libpq
+install_brew cdktf
 
 popd > /dev/null || exit

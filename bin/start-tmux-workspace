@@ -18,7 +18,7 @@ function setSessionAndWindowFromFZF() {
   if [[ -z ${context} ]]; then
     # no selection, so exit
     exit 0
-    else
+  else
     session=$(echo ${context} | cut -d ' ' -f 1)
     window=$(echo ${context} | cut -d ' ' -f 2)
   fi

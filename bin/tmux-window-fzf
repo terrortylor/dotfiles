@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+window=$(tmux list-windows | cut -d ' ' -f 1,2 | fzf +m)
+
+if [[ -n $window ]]; then
+  id=$(echo ${window} | cut -d ' ' -f 1)
+  echo "id: $id"
+  # remove last charecter
+  tmux select-window -t ${id%?}
+  exit 0
+fi

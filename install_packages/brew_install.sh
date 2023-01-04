@@ -54,5 +54,6 @@ install_brew ripgrep
 # postgres cli tooling
 install_brew libpq
 install_brew cdktf
+install_brew pomatez --cask
 
 popd > /dev/null || exit

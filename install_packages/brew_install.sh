@@ -41,6 +41,7 @@ install_brew podman
 install_brew podman-compose
 install_brew kind
 install_brew jq
+install_brew yq
 install_brew kubernetes-cli
 install_brew helm
 install_brew tmux
@@ -55,5 +56,7 @@ install_brew ripgrep
 install_brew libpq
 install_brew cdktf
 install_brew pomatez --cask
+# Required for neovim's neorg plugin which uses this for treesitter compilation
+install_brew gcc
 
 popd > /dev/null || exit

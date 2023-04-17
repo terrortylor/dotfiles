@@ -6,6 +6,8 @@ setopt APPEND_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_REDUCE_BLANKS
+setopt NO_SHARE_HISTORY
+unsetopt SHARE_HISTORY
 HISTORY_IGNORE="ls|ll|pwd|exit|git s|git st"
 
 # Prompt

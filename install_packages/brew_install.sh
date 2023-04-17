@@ -59,4 +59,10 @@ install_brew pomatez --cask
 # Required for neovim's neorg plugin which uses this for treesitter compilation
 install_brew gcc
 
+# Required for patching fonts
+brew tap homebrew/cask-fonts
+# install_brew homebrew/cask-fonts --cask
+install_brew font-hack-nerd-font --cask
+
+
 popd > /dev/null || exit

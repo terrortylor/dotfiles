@@ -37,8 +37,8 @@ install_brew rsync
 install_brew unzip
 install_brew pygments
 install_brew bitwarden-cli
-install_brew podman
-install_brew podman-compose
+# install_brew podman
+# install_brew podman-compose
 install_brew kind
 install_brew jq
 install_brew yq

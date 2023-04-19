@@ -28,6 +28,9 @@ link_file "${SCRIPT_DIR}/config/warpd" ~/.config/warpd
 info "Linking alacritty config"
 link_file "${SCRIPT_DIR}/config/alacritty" ~/.config/alacritty
 
+info "Linking yamllint config"
+link_file "${SCRIPT_DIR}/config/yamllint" ~/.config/yamllint
+
 info "Linking tridactyl config"
 link_file "${SCRIPT_DIR}/config/tridactyl" ~/.config/tridactyl
 

@@ -2,13 +2,12 @@
 alias -g ll='ls -lahF'
 
 # Options
+setopt SHARE_HISTORY
 setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_REDUCE_BLANKS
-setopt NO_SHARE_HISTORY
-unsetopt SHARE_HISTORY
-HISTORY_IGNORE="ls|ll|pwd|exit|git s|git st"
 
 # Prompt
 ZSH_THEME_GIT_PROMPT_PREFIX="("
@@ -29,5 +28,6 @@ PROMPT+=' [%{$fg[cyan]%}%/%{$reset_color%}]$ '
 RPROMPT='$(git_super_status) [%{$fg[green]%}%D %{$fg[yellow]%}%*%{$reset_color%}]'
 
 # Variables
-export EDITOR=vim
+export EDITOR=nvim
+export VISUAL=nvim
 export PATH=${PATH}:${HOME}/bin

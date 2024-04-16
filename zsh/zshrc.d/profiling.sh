@@ -1,0 +1,29 @@
+timezsh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
+
+timezshplugins() {
+  for plugin ($plugins); do
+    timer=$(($(gdate +%s%N)/1000000))
+    if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
+      source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
+    elif [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
+      source $ZSH/plugins/$plugin/$plugin.plugin.zsh
+    fi
+    now=$(($(gdate +%s%N)/1000000))
+    elapsed=$(($now-$timer))
+    echo $elapsed":" $plugin
+  done
+}
+
+timezshfiles() {
+  for plugin in $HOME/.zshrc.d/*; do
+    timer=$(($(gdate +%s%N)/1000000))
+      # source $ZSH/plugins/$plugin/$plugin.plugin.zsh
+      echo "File: ${plugin}"
+    now=$(($(gdate +%s%N)/1000000))
+    elapsed=$(($now-$timer))
+    echo $elapsed":" $plugin
+  done
+}

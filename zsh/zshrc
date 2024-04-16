@@ -6,6 +6,8 @@ ZSH_THEME="robbyrussell"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy/mm/dd"
 
+# These two exports are for NVM lazy load plugin (zsh-mvn)
+# https://blog.mattclemente.com/2020/06/26/oh-my-zsh-slow-to-load/
 export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 plugins=(zsh-nvm git colored-man-pages colorize git-prompt sudo)
@@ -17,3 +19,7 @@ fpath+=${HOME}/.zsh-functions
 for script in ${HOME}/.zshrc.d/*.sh; do
   source ${script}
 done
+
+# This helps prevent tab completion not be too slow:
+# https://stackoverflow.com/questions/76746392/why-is-my-zsh-tab-completion-slow-on-commands-but-not-directories
+unsetopt pathdirs

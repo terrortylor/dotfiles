@@ -5,7 +5,11 @@
 # chmod u+x nvim.appimage
 # mv nvim.appimage nvim
 mv nvim-macos nvim-macos-old
-curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
-xattr -c ./nvim-macos.tar.gz
-tar xzvf nvim-macos.tar.gz
-rm nvim-macos.tar.gz
+# curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
+# xattr -c ./nvim-macos.tar.gz
+# tar xzvf nvim-macos.tar.gz
+# rm nvim-macos.tar.gz
+curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz
+xattr -c ./nvim-macos-arm64.tar.gz
+tar xzvf nvim-macos-arm64.tar.gz
+rm nvim-macos-arm64.tar.gz

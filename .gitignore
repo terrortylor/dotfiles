@@ -4,3 +4,4 @@ bin/nvim-old
 bin/nvim
 bin/nvim-macos
 bin/nvim-macos-old
+bin/nvim-macos-arm64/share

@@ -6,20 +6,40 @@ ZSH_THEME="robbyrussell"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy/mm/dd"
 
-# These two exports are for NVM lazy load plugin (zsh-mvn)
-# https://blog.mattclemente.com/2020/06/26/oh-my-zsh-slow-to-load/
-export NVM_LAZY_LOAD=true
-export NVM_COMPLETION=true
-plugins=(zsh-nvm git colored-man-pages colorize git-prompt sudo)
+plugins=(git colored-man-pages colorize git-prompt sudo)
 
 source ${ZSH}/oh-my-zsh.sh
 
 fpath+=${HOME}/.zsh-functions
 
+
+# Taken from: https://gist.github.com/smac89/4b85bd3f9fb902439c0e67e36272832e
+local function lazy_load() {
+    local -xr thunk="$(cat)"
+    # (u) removes duplicates
+    local -xr triggers=(${(u)@})
+    
+    # Only if length of triggers is greater than zero
+    # otherwise the function will immediately execute.
+    # (X) reports errors if any
+    if [ ${(X)#triggers} -gt 0 ]; then
+        eval " ${(@)triggers}() {
+        echo \"lazy triggered\"
+            trigger=\"\$0\"
+            unfunction ${(@)triggers}
+            ${thunk}
+            if type \$trigger > /dev/null; then
+                \$trigger \${@}
+            fi
+        }"
+    fi
+}
+
+export NVM_DIR=~/.nvm
+lazy_load 'nvm' <<- 'EOF'
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+EOF
+
 for script in ${HOME}/.zshrc.d/*.sh; do
   source ${script}
 done
-
-# This helps prevent tab completion not be too slow:
-# https://stackoverflow.com/questions/76746392/why-is-my-zsh-tab-completion-slow-on-commands-but-not-directories
-unsetopt pathdirs

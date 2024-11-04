@@ -1,7 +1,10 @@
 lastupdatecheck: 0
 recentrepos:
-    - /Users/alex.tylor/personal-workspace/dotfiles
+    - /Users/alex.tylor/workspace/platform-provision
+    - /Users/alex.tylor/workspace/test-end-to-end
     - /Users/alex.tylor/workspace/platform-bootstrap
+    - /Users/alex.tylor/personal-workspace/vim-environment
+    - /Users/alex.tylor/personal-workspace/dotfiles
 startuppopupversion: 5
 lastversion: 0.43.1
 customcommandshistory: []

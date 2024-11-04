@@ -7,3 +7,8 @@ rules:
     max: 120
   comments:
     min-spaces-from-content: 1
+  braces:
+    min-spaces-inside: 1
+    max-spaces-inside: 1
+  truthy:
+    allowed-values: ['true', 'false', 'on', 'off']

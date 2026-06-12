@@ -49,6 +49,8 @@
   up = pull --rebase --autostash
 
   track = "!git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`"
+	stashu = "!git stash push -S; git stash; git stash pop --index stash@{1}"
+	stashs = stash push -S
 
 [core]
 	editor = nvim
@@ -81,3 +83,5 @@
 [includeIf "gitdir:~/personal-workspace/"]
     path = ~/.gitconfig_personal
 
+[init]
+	defaultBranch = main

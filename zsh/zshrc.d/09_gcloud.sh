@@ -1,7 +1,7 @@
-lazy_load 'gcloud' <<- 'EOF'
+# lazy_load 'gcloud' 'k9s' 'kubectl' <<- 'EOF'
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
-EOF
+# EOF

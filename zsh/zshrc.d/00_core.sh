@@ -25,9 +25,10 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✔%G%}"
 PROMPT="%(?:%{$fg_bold[green]%}●:%{$fg_bold[red]%}●)%{$reset_color%}"
 PROMPT+=' [%{$fg[cyan]%}%/%{$reset_color%}]$ '
 
-RPROMPT='$(git_super_status) [%{$fg[green]%}%D %{$fg[yellow]%}%*%{$reset_color%}]'
+RPROMPT='[%{$fg_bold[green]%}$(task status:pending -in -someday -WAITING count)%{$reset_color%}] '
+RPROMPT+='[%{$fg[red]%}$(task +in +PENDING count)%{$reset_color%}] '
+RPROMPT+='$(git_super_status) [%{$fg[green]%}%D %{$fg[yellow]%}%*%{$reset_color%}]'
 
 # Variables
 export EDITOR=nvim
-export VISUAL=nvim
 export PATH=${PATH}:${HOME}/bin
